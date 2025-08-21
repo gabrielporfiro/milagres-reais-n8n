@@ -1,0 +1,516 @@
+{
+  "active": false,
+  "connections": {
+    "Set data": {
+      "main": [
+        [
+          {
+            "node": "OpenRouter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Completed?": {
+      "main": [
+        [
+          {
+            "node": "Get Url Video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 60 sec.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get status": {
+      "main": [
+        [
+          {
+            "node": "Completed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Video": {
+      "main": [
+        [
+          {
+            "node": "Wait 60 sec.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Video": {
+      "main": [
+        [
+          {
+            "node": "Update result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 60 sec.": {
+      "main": [
+        [
+          {
+            "node": "Get status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Url Video": {
+      "main": [
+        [
+          {
+            "node": "Get File Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get new video": {
+      "main": [
+        [
+          {
+            "node": "Set data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get File Video": {
+      "main": [
+        [
+          {
+            "node": "Upload Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get new video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter": {
+      "main": [
+        [
+          {
+            "node": "Create Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-22T22:26:00.595Z",
+  "id": "l9V2XCO5adS2y8V2",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Fluxo automação de geração de episódio",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "12f9dca0-c895-4d12-b679-998bc9410285",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -400,
+        1168
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/veo3/requests/{{ $('Create Video').item.json.request_id }}/status ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "85075c6d-d2cc-4162-af60-e072637601c3",
+      "name": "Get status",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        944,
+        1088
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Q8WzAbO6TRpaasxZ",
+          "name": "Fal AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 60
+      },
+      "id": "8afd0045-6972-4535-b970-4426ec04873e",
+      "name": "Wait 60 sec.",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        720,
+        1168
+      ],
+      "webhookId": "490facb8-d0ae-402e-ab59-a87720cf0bdd",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "383d112e-2cc6-4dd4-8985-f09ce0bd1781",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "COMPLETED"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ba840b64-db81-4b17-9113-2f664bc3ea62",
+      "name": "Completed?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1168,
+        1168
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1pcoY9N_vQp44NtSRR5eskkL5Qd0N0BGq7Jh_4m-7VEQ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pcoY9N_vQp44NtSRR5eskkL5Qd0N0BGq7Jh_4m-7VEQ/edit?usp=drivesdk",
+          "cachedResultName": "Video Google Veo3"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11ebWJvwwXHgvQld9kxywKQUvIoBw6xMa0g0BuIqHDxE/edit#gid=0",
+          "cachedResultName": "Foglio1"
+        },
+        "columns": {
+          "value": {
+            "VIDEO": "={{ $('Get Url Video').item.json.video.url }}",
+            "row_number": "={{ $('Get new video').item.json.row_number }}"
+          },
+          "schema": [
+            {
+              "id": "PROMPT",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "PROMPT",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DURATION",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "DURATION",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "VIDEO",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "VIDEO",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "YOUTUBE_URL",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "YOUTUBE_URL",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "readOnly": true,
+              "required": false,
+              "displayName": "row_number",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "row_number"
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "40fe181c-4965-425f-94c4-f139f17cea11",
+      "name": "Update result",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        2064,
+        1168
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Oobl2LZpQaxYFZYC",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c713d31f-9abd-496a-ac79-e8e2efe60aa0",
+              "name": "prompt",
+              "type": "string",
+              "value": "={{ $json.PROMPT }}\n\nDuration of the video: {{ $json.DURATION }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d3e59dcb-9775-437c-80b3-6d7a281a49ee",
+      "name": "Set data",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        48,
+        1168
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "184nt2dETc4dr86WYGaMO1H-rrsBj4IwB75VIX8YkjPU",
+          "mode": "list",
+          "cachedResultName": "Video Google Veo3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/184nt2dETc4dr86WYGaMO1H-rrsBj4IwB75VIX8YkjPU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Foglio1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/184nt2dETc4dr86WYGaMO1H-rrsBj4IwB75VIX8YkjPU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "e0511e65-5ada-40b4-9f66-e5a25863174b",
+      "name": "Get new video",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        -176,
+        1168
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Oobl2LZpQaxYFZYC",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/veo3",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"prompt\": \"{{ $json.response.replace(/\\n/g, ' ').replace(/\\\"/g, '\\\\\\\"') }}\"\n}",
+        "options": {}
+      },
+      "id": "557ac016-7e63-4e05-b044-cef9c8bacfcd",
+      "name": "Create Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        496,
+        1168
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Q8WzAbO6TRpaasxZ",
+          "name": "Fal AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/veo3/requests/{{ $json.request_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "438d95c4-9ea8-4319-bfc3-7449e4a59899",
+      "name": "Get Url Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1392,
+        1168
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Q8WzAbO6TRpaasxZ",
+          "name": "Fal AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Get Url Video').item.json.video.url }}",
+        "options": {}
+      },
+      "id": "ae0494ca-1919-4913-afb6-3c8ca361001c",
+      "name": "Get File Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1616,
+        1168
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "name": "={{ $now.format('yyyyLLddHHmmss') }}-{{ $('Get Url Video').item.json.video.file_name }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1aHRwLWyrqfzoVC8HoB-YMrBvQ4tLC-NZ",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1aHRwLWyrqfzoVC8HoB-YMrBvQ4tLC-NZ",
+          "cachedResultName": "Fal.run"
+        },
+        "options": {}
+      },
+      "id": "abb0241c-c890-49fc-969b-6e2c7b0bb660",
+      "name": "Upload Video",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        1840,
+        1168
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "4OnfpQINH7rji4JY",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-3.5-turbo",
+        "system_prompt": "🧠 System Prompt Aprimorado – Agente de Análise e Melhoria de Prompts para Vídeo\nVocê é um agente especializado em analisar, decompor e orientar a melhoria de prompts voltados à geração de vídeo por inteligência artificial. Sua tarefa é guiar o aprimoramento de prompts existentes, fornecendo recomendações precisas, estruturadas e embasadas em boas práticas de design de prompt visual.\n\nAo receber um prompt, sua resposta deve seguir uma estrutura analítica de três partes, sem reescrever o prompt original:\n\n1. Elementos que podem ser mais específicos ou detalhados\nListe os componentes genéricos, vagos ou ambíguos do prompt que poderiam ser refinados. Exemplos incluem:\n\nPersonagem (aparência, função, ação)\n\nCenário (local, tempo, clima, ambiente)\n\nEstilo visual (realismo, animação, cinematográfico)\n\nDuração, formato, composição de cena, uso de câmera\n\nFinalidade do vídeo (plataforma, contexto, emoção desejada)\n\n2. Sugestões de melhoria para cada elemento\nPara cada item identificado, sugira como ele pode ser aprimorado. Forneça exemplos ilustrativos ou reformulações parciais para guiar o usuário, sem reconstruir o prompt completo.\n\n3. Justificativa para cada melhoria sugerida\nExplique por que a melhoria proposta é importante. Destaque como ela contribui para:\n\nClareza da instrução\n\nCoerência visual e narrativa\n\nAlinhamento com a intenção do solicitante\n\nQualidade do resultado gerado pela IA\n\n⚠️ Instruções obrigatórias:\n❌ Não reescreva o prompt original.\n\n❌ Não faça perguntas abertas.\n\n✅ Adote postura objetiva, consultiva e profissional.\n\n✅ Seja específico e técnico, evite generalizações.\n\n🎯 Objetivo:\nSeu papel é atuar como um consultor técnico que ajuda o usuário a transformar prompts vagos em instruções visuais claras, eficazes e otimizadas para modelos generativos de vídeo. Sua orientação deve ser prática, precisa e aplicável diretamente à reformulação do prompt.\n\n",
+        "message": "={{ $json.prompt }}",
+        "temperature": 0.2,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-openrouter.openRouter",
+      "typeVersion": 1,
+      "position": [
+        272,
+        1168
+      ],
+      "id": "ce16378a-f072-48f3-8dbc-4f2a5eab270a",
+      "name": "OpenRouter",
+      "credentials": {
+        "openRouterApi": {
+          "id": "XLUNvFV9dYDqE6Ci",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "milagres-reais-n8n",
+  "repo_owner": "gabrielporfiro",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-22T23:47:21.683Z",
+  "versionId": "41dbecaf-fdc7-4e61-a10b-411b4a3bf6ee"
+}
