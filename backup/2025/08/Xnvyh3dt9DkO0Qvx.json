@@ -1,0 +1,53 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-08-15T03:25:52.855Z",
+  "id": "Xnvyh3dt9DkO0Qvx",
+  "isArchived": true,
+  "meta": null,
+  "name": "My Sub-workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## 📋 MENU",
+        "height": 1040,
+        "width": 1168,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        -208
+      ],
+      "id": "9e6dbf8a-faa8-4148-9ca1-9834605e6d1b",
+      "name": "Sticky Note1",
+      "disabled": false
+    },
+    {
+      "id": "95414a7a-a81a-4873-aeee-d11cc802bfc0",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -976,
+        -208
+      ],
+      "parameters": {
+        "inputSource": "passthrough"
+      }
+    }
+  ],
+  "pinData": null,
+  "repo_name": "milagres-reais-n8n",
+  "repo_owner": "gabrielporfiro",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-15T05:11:15.908Z",
+  "versionId": "8b998c67-08b9-4c4f-8bd8-6d09fea3af87"
+}
