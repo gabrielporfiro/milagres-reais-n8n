@@ -1,0 +1,160 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-08T20:15:24.436Z",
+  "id": "ijYFW4Wq0jor4X76",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Fluxo teste audio",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "4382470c-c8a0-4704-8a15-783af6e52737",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "92e17fc9-4c54-4915-92c6-919c894d75d6",
+      "name": "Webhook",
+      "webhookId": "4382470c-c8a0-4704-8a15-783af6e52737"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.body.audio.audioUrl }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        256,
+        0
+      ],
+      "id": "fdb39a0b-64bc-4f0b-94f5-6aa221401202",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        464,
+        0
+      ],
+      "id": "780f1077-713c-48d2-be55-79b8e1946018",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "nrLX2LxKR5fSsuxx",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8n.milagresreais.com.br",
+            "content-length": "982",
+            "accept-encoding": "gzip, br",
+            "content-type": "application/json",
+            "origin": "https://api.z-api.io",
+            "z-api-token": "6C7DC0E90939F58D36B138F9",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:111.0) Gecko/20100101 Firefox/111.0",
+            "cf-ray": "96c1e26baf1e015a-GRU",
+            "server": "Z-API",
+            "x-forwarded-for": "167.234.230.141",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "167.234.230.141",
+            "cf-ipcountry": "BR",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "isStatusReply": false,
+            "chatLid": "116964978594022@lid",
+            "connectedPhone": "556293437083",
+            "waitingMessage": false,
+            "isEdit": false,
+            "isGroup": false,
+            "isNewsletter": false,
+            "instanceId": "3E51386D6B07D10BA0A0E660A5CC20F3",
+            "messageId": "3FDD1A8AD58587B9330B",
+            "phone": "556292060557",
+            "fromMe": false,
+            "momment": 1754686209000,
+            "status": "RECEIVED",
+            "chatName": "Meu Numero",
+            "senderPhoto": null,
+            "senderName": "Gabriel Porfiro",
+            "photo": "https://pps.whatsapp.net/v/t61.24694-24/473403484_933152182210662_5607100161505563458_n.jpg?ccb=11-4&oh=01_Q5Aa2AF-L4URaUqXt-6Pc6ehGrjq3vQc0hoCEludLBb3yrHk5g&oe=68A36445&_nc_sid=5e03e0&_nc_cat=100",
+            "broadcast": false,
+            "participantLid": null,
+            "messageExpirationSeconds": 0,
+            "forwarded": false,
+            "type": "ReceivedCallback",
+            "fromApi": false,
+            "audio": {
+              "ptt": true,
+              "seconds": 2,
+              "audioUrl": "https://f004.backblazeb2.com/file/temp-file-download/instances/3E51386D6B07D10BA0A0E660A5CC20F3/3FDD1A8AD58587B9330B/BGIX21d2xyOR72QRmJfpqg==.ogg",
+              "mimeType": "audio/ogg; codecs=opus",
+              "viewOnce": false
+            }
+          },
+          "webhookUrl": "https://n8n.milagresreais.com.br/webhook-test/4382470c-c8a0-4704-8a15-783af6e52737",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
+  "repo_name": "milagres-reais-n8n",
+  "repo_owner": "gabrielporfiro",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-15T02:55:00.074Z",
+  "versionId": "8b5ae185-b8e2-4f9a-808d-af0a51081be5"
+}
