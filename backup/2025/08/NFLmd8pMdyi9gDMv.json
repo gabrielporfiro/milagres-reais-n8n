@@ -1,0 +1,86 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-21T04:30:56.248Z",
+  "id": "NFLmd8pMdyi9gDMv",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Zerar etapas",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3df9ff53-28de-4069-943e-ef7b75f5a0b7",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE public.whatsapp_user_flows SET current_step = 0;\nUPDATE public.whatsapp_user_flows SET sub_step = 0;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        240,
+        0
+      ],
+      "id": "5df3abb4-e041-47de-8150-03f415634837",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "postgres": {
+          "id": "LqMDu8jySHRItDdq",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "milagres-reais-n8n",
+  "repo_owner": "gabrielporfiro",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2025-07-22T20:33:18.683Z",
+      "updatedAt": "2025-07-22T20:33:18.683Z",
+      "id": "mlooW3lZymI5bPwP",
+      "name": "whatsapp"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-21T04:35:07.714Z",
+  "versionId": "17767226-961b-4399-9851-72138f24e34e"
+}
