@@ -1,0 +1,68 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "List voices",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-10T02:34:28.125Z",
+  "id": "brhL58gcPHFukwgu",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c2c162d1-5157-4c29-814d-414fc38e7d4a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "voice",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        352,
+        16
+      ],
+      "id": "3bc365af-b0ca-416d-a65d-053e05f85bf4",
+      "name": "List voices",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "09rouW0kZ532tmbp",
+          "name": "ElevenLabs account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "milagres-reais-n8n",
+  "repo_owner": "gabrielporfiro",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-10T02:34:28.125Z",
+  "versionId": "d463a1d5-e284-4d1d-9b7d-876112129d89"
+}
