@@ -1,0 +1,88 @@
+{
+  "active": false,
+  "connections": {
+    "Login": {
+      "main": [
+        []
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Login",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-12T01:09:33.226Z",
+  "id": "n5Kjz5SYuda0GOZq",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 12
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "71f05cb3-090e-498c-adbc-3a5615968ca1",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.milagresreais.com.br/api/login",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "admin@milagresreais.com"
+            },
+            {
+              "name": "password",
+              "value": "admin123"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "1262bcf1-ce71-43d5-8f2b-bb6370bb1fe9",
+      "name": "Login"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "milagres-reais-n8n",
+  "repo_owner": "gabrielporfiro",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-12T01:21:56.164Z",
+  "versionId": "436cd441-2693-4a5f-8d62-eaa28cb8cb0a"
+}
